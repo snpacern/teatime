@@ -32,12 +32,12 @@ import org.wahlzeit.services.*;
 public abstract class AbstractMain {
 	
 	/**
-	 * 
+	 *
 	 */
 	protected SysSession mainSession = null;
 	
 	/**
-	 * 
+	 * this comment is sponsored by snpacern for commit testing purposes
 	 */
 	protected AbstractMain() {
 		// do nothing
