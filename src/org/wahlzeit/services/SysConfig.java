@@ -130,9 +130,10 @@ public class SysConfig extends AbstractConfig {
 		
 		// Database connection
 		doSetValue(SysConfig.DB_DRIVER, "org.postgresql.Driver");
-		doSetValue(SysConfig.DB_CONNECTION, "jdbc:postgresql://localhost:5432/wahlzeit");
-		doSetValue(SysConfig.DB_USER, "wahlzeit");
-		doSetValue(SysConfig.DB_PASSWORD, "wahlzeit");
+		//doSetValue(SysConfig.DB_CONNECTION, "jdbc:postgresql://localhost:5432/wahlzeit");
+		doSetValue(SysConfig.DB_CONNECTION, "jdbc:postgresql://localhost:5432/cerny");
+		doSetValue(SysConfig.DB_USER, "cerny");
+		doSetValue(SysConfig.DB_PASSWORD, "UXAFWTTs6RO76TrT");
 	}
 	
 	/**
