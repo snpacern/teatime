@@ -23,6 +23,11 @@ package org.wahlzeit.model;
 import java.sql.*;
 import java.net.*;
 
+import org.wahlzeit.maps.coordinates.AbstractLocation;
+import org.wahlzeit.maps.coordinates.GPSCoordinates;
+import org.wahlzeit.maps.coordinates.GPSLocation;
+import org.wahlzeit.maps.coordinates.InternationalMapCodeLocation;
+import org.wahlzeit.maps.coordinates.MapCodeCoordinates;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 
@@ -51,6 +56,7 @@ public class Photo extends DataObject {
 	public static final String STATUS = "status";
 	public static final String IS_INVISIBLE = "isInvisible";
 	public static final String UPLOADED_ON = "uploadedOn";
+	public static final String LOCATION = "location";
 	
 	/**
 	 * 
@@ -65,6 +71,7 @@ public class Photo extends DataObject {
 	 */
 	protected PhotoId id = null;
 	
+	protected String location = null;
 	/**
 	 * 
 	 */
@@ -167,6 +174,8 @@ public class Photo extends DataObject {
 		creationTime = rset.getLong("creation_time");
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
+		
+		location = rset.getString("location");
 	}
 	
 	/**
@@ -186,7 +195,16 @@ public class Photo extends DataObject {
 		rset.updateInt("status", status.asInt());
 		rset.updateInt("praise_sum", praiseSum);
 		rset.updateInt("no_votes", noVotes);
-		rset.updateLong("creation_time", creationTime);		
+		rset.updateLong("creation_time", creationTime);	
+		
+		// This updates the location in the database
+		//double latitude = 34;
+		//double longitude = 40;
+		
+		//AbstractLocation alocation = new GPSLocation(latitude, longitude);
+		//alocation.addLocationToPhoto(id, latitude, longitude);
+		
+		rset.updateString("location", location);
 	}
 
 	/**
@@ -202,6 +220,16 @@ public class Photo extends DataObject {
 	 */
 	public PhotoId getId() {
 		return id;
+	}
+	
+	public String getLocation()
+	{
+		return location;
+	}
+	public void setLocation(String location)
+	{
+		this.location = location;
+		incWriteCount();
 	}
 	
 	/**
@@ -480,5 +508,4 @@ public class Photo extends DataObject {
 	public long getCreationTime() {
 		return creationTime;
 	}
-	
 }

@@ -156,4 +156,6 @@ public interface PartUtil {
 	public static final String ADMIN_USER_PHOTO_FORM_NAME = "adminUserPhotoForm";
 	public static final String ADMIN_USER_PHOTO_FORM_FILE = "forms/AdminUserPhotoForm";
 	
+	// Add MapCoordinates here
+	//public static final String SHOW_MAPCOORDINATES = "mapCoordinates";
 }

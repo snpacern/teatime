@@ -211,6 +211,10 @@ public class ServiceMain extends ModelMain {
 		manager.addWebPartHandler(PartUtil.SHOW_ADMIN_MENU_FORM_NAME, temp);
 		manager.addWebPartHandler(PartUtil.ADMIN_USER_PROFILE_FORM_NAME, new AdminUserProfileFormHandler());
 		manager.addWebPartHandler(PartUtil.ADMIN_USER_PHOTO_FORM_NAME, new AdminUserPhotoFormHandler());
+		
+		// MapCoordinates
+		//temp = new MapCoordinateHandler();
+		//manager.addWebPartHandler(PartUtil.SHOW_MAPCOORDINATES, temp);
 	}
 	
 	/**
