@@ -23,11 +23,6 @@ package org.wahlzeit.model;
 import java.sql.*;
 import java.net.*;
 
-import org.wahlzeit.maps.coordinates.AbstractLocation;
-import org.wahlzeit.maps.coordinates.GPSCoordinates;
-import org.wahlzeit.maps.coordinates.GPSLocation;
-import org.wahlzeit.maps.coordinates.InternationalMapCodeLocation;
-import org.wahlzeit.maps.coordinates.MapCodeCoordinates;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 
@@ -56,7 +51,7 @@ public class Photo extends DataObject {
 	public static final String STATUS = "status";
 	public static final String IS_INVISIBLE = "isInvisible";
 	public static final String UPLOADED_ON = "uploadedOn";
-	public static final String LOCATION = "location";
+	//public static final String LOCATION = "location";
 	
 	/**
 	 * 
@@ -71,7 +66,7 @@ public class Photo extends DataObject {
 	 */
 	protected PhotoId id = null;
 	
-	protected String location = null;
+	//protected String location = null;
 	/**
 	 * 
 	 */
@@ -175,7 +170,7 @@ public class Photo extends DataObject {
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 		
-		location = rset.getString("location");
+		//location = rset.getString("location");
 	}
 	
 	/**
@@ -204,7 +199,7 @@ public class Photo extends DataObject {
 		//AbstractLocation alocation = new GPSLocation(latitude, longitude);
 		//alocation.addLocationToPhoto(id, latitude, longitude);
 		
-		rset.updateString("location", location);
+		//rset.updateString("location", location);
 	}
 
 	/**
@@ -222,15 +217,15 @@ public class Photo extends DataObject {
 		return id;
 	}
 	
-	public String getLocation()
-	{
-		return location;
-	}
-	public void setLocation(String location)
-	{
-		this.location = location;
-		incWriteCount();
-	}
+//	public String getLocation()
+//	{
+//		return location;
+//	}
+//	public void setLocation(String location)
+//	{
+//		this.location = location;
+//		incWriteCount();
+//	}
 	
 	/**
 	 * 
