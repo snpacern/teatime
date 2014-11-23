@@ -18,7 +18,13 @@ public class TeaCategories extends ATeaQualityPhoto
 	 */
 	public TeaCategories(String loc)
 	{
+		// I cannot check for the validity of loc because 
+		// I'm unable to use my Location interface, this is
+		// why I'm omitting the precondition check here
 		RegisterTerritory(TeaFromChina.CHNterritory, TeaFromChina.getInstance());
+		// Check postcondition
+		assert(m_territory.size() >= 0);
+		
 		this.gpsLocation = loc;
 	}
 
@@ -49,12 +55,18 @@ public class TeaCategories extends ATeaQualityPhoto
 	 * @methodproperties primitive
 	 */
 	public String getQuality(String territory) {
+		// Precondition: territory not null or empty
+		// territory is usually valid, as it is checked by MapCode
+		// (which I am currently not able to use, as my Location interface
+		// seems to be incorrectly implemented)
 		assert(territory != null);
 		assert(territory != "");
 		
+		// For now: set territory manually to China
 		territory = TeaFromChina.CHNterritory;
 		String quality = m_territory.get(territory).getQuality();
 		
+		// Postcondition: quality not null or empty
 		assert(quality != null);
 		assert(quality != "");
 		
@@ -68,7 +80,11 @@ public class TeaCategories extends ATeaQualityPhoto
 	 */
 	@Override
 	public String asString() {
-		return getQuality(gpsLocation);
+		String ret_quality = getQuality(gpsLocation);
+		assert(ret_quality != null);
+		assert(ret_quality != "");
+		
+		return ret_quality;
 	}
 	
 	private String gpsLocation;

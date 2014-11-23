@@ -30,6 +30,8 @@ public class TeaFromChina extends ATeaFromCountry
 	 * @methodproperties primitive, hook
 	 */
 	public String getQuality() {
+		assert(quality != null);
+		assert(quality != "");
 		return quality;
 	}
 }

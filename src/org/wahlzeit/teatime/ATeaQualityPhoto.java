@@ -23,7 +23,16 @@ public abstract class ATeaQualityPhoto implements ITeaQualityPhoto
 		assert(territory != null);
 		assert(territory != "");
 		
+		// 
+		int assertSize = m_territory.size();
+		assert(assertSize >= 0);
+		
 		m_territory.put(territory, tCat);
+		
+		// This postcondition ONLY works as I have not
+		// implemented a duplicate check yet!
+		assert(m_territory.size() > assertSize);
+		
 //		for (String key : m_territory.keySet())
 //		{
 //			if (!m_territory.containsKey(key))
