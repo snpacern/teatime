@@ -105,6 +105,10 @@ public abstract class AbstractWebPartHandler implements WebPartHandler {
 	{
 		return photo.getLocation(us.cfg());
 	}
+	protected String getTeaQuality(UserSession us, Photo photo)
+	{
+		return photo.getTeaQuality(us.cfg());
+	}
 	
 	/**
 	 * 

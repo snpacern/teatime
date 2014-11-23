@@ -23,7 +23,9 @@ package org.wahlzeit.maps.coordinates;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
+import com.mapcode.Mapcode;
 import com.mapcode.MapcodeCodec;
 import com.mapcode.Point;
 import com.mapcode.UnknownMapcodeException;
@@ -65,6 +67,21 @@ public class InternationalMapCodeLocation extends AbstractLocation
 		return mapCode;
 	}
 
+	public List<String> getTerritoryFromGPS(String gpsLocation)
+	{
+		String[] coordinates = gpsLocation.split(",");		
+		List<Mapcode> results = MapcodeCodec.encode(Double.parseDouble(coordinates[0]),Double.parseDouble(coordinates[1]));
+		
+		List<String> convertedResults = null;
+		
+		for (Mapcode code : results)
+		{
+			convertedResults.add(code.getTerritory().getFullName());
+		}
+		
+		return convertedResults;
+	}
+	
 	@Override
 	public String getIdAsString() {
 		// TODO Auto-generated method stub

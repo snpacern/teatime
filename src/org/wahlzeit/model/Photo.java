@@ -26,6 +26,7 @@ import java.net.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.maps.coordinates.*;
+import org.wahlzeit.teatime.*;
 
 /**
  * A photo represents a user-provided (uploaded) photo.
@@ -49,6 +50,7 @@ public class Photo extends DataObject {
 	
 	// Added 23.11.2014
 	public static final String LOCATION = "location";
+	public static final String QUALITY = "quality";
 	
 	
 	public static final String TAGS = "tags";
@@ -111,6 +113,7 @@ public class Photo extends DataObject {
 	 * Added 23.11.2014
 	 */
 	protected Location creationLocation;
+	protected ITeaQualityPhoto teaQuality;
 	
 	/**
 	 * 
@@ -189,6 +192,8 @@ public class Photo extends DataObject {
 			}
 		}
 		creationLocation = new GPSLocation(Double.parseDouble(coordinates[0]),Double.parseDouble(coordinates[1]));
+		
+		teaQuality = new TeaCategories(creationLocation.asString());
 			
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 	}
@@ -212,6 +217,7 @@ public class Photo extends DataObject {
 		rset.updateInt("no_votes", noVotes);
 		rset.updateLong("creation_time", creationTime);
 		rset.updateString("location", creationLocation.asString());
+		rset.updateString("quality", teaQuality.asString());
 	}
 
 	/**
@@ -229,15 +235,16 @@ public class Photo extends DataObject {
 		return id;
 	}
 	
-//	public String getLocation()
-//	{
-//		return location;
-//	}
-//	public void setLocation(String location)
-//	{
-//		this.location = location;
-//		incWriteCount();
-//	}
+	// Added 23.11.2014
+	public void setTeaQuality(ITeaQualityPhoto teaTime)
+	{
+		teaQuality = teaTime;
+		incWriteCount();
+	}
+	public String getTeaQuality(ModelConfig cfg)
+	{
+		return cfg.getTeaQuality(teaQuality.asString());
+	}
 	
 	/**
 	 * 

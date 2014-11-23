@@ -27,6 +27,7 @@ import java.util.*;
 import org.wahlzeit.main.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.maps.coordinates.*;
+import org.wahlzeit.teatime.*;
 
 /**
  * A photo manager provides access to and manages photos.
@@ -351,6 +352,7 @@ public class PhotoManager extends ObjectManager {
 		
 		// Added 23.11.2014
 		result.setLocation(new GPSLocation());
+		result.setTeaQuality(new TeaCategories());
 		
 		addPhoto(result);
 		return result;

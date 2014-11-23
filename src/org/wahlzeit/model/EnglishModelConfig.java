@@ -95,6 +95,13 @@ public class EnglishModelConfig extends AbstractModelConfig {
 		return result;
 	}
 
+	public String getTeaQuality(String un)
+	{
+		String result = "Quality: ";
+		result += un;
+		return result;
+	}
+	
 	@Override
 	public String getPhotoLocation() {
 		// TODO Auto-generated method stub

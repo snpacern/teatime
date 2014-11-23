@@ -200,5 +200,6 @@ public interface ModelConfig extends Configuration {
 	// Location (Added 23.11.2014)
 	public String asPhotoLocation(String un);
 	public String getPhotoLocation();
+	public String getTeaQuality(String un);
 	
 }

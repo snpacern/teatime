@@ -43,6 +43,17 @@ public class GPSLocation extends AbstractLocation
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
+	
+	private static GPSLocation instance = null;
+	
+	public static GPSLocation getInstance()
+	{
+		if (instance == null)
+			return new GPSLocation();
+		
+		return instance;
+	}
+	
 
 	@Override
 	protected String convertToInternationalMapCodeCoordinates() 

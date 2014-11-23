@@ -21,10 +21,13 @@
 package org.wahlzeit.maps.coordinates;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.wahlzeit.model.PhotoId;
 import org.wahlzeit.services.DataObject;
+
+import com.mapcode.Mapcode;
 
 public abstract class AbstractLocation extends DataObject implements Location 
 {	
@@ -45,7 +48,7 @@ public abstract class AbstractLocation extends DataObject implements Location
 		{
 			throw new IllegalArgumentException();
 		}
-		if (longitude > 90 || longitude < -90)
+		if (longitude > 180 || longitude < -180)
 		{
 			throw new IllegalArgumentException();
 		}
@@ -63,6 +66,19 @@ public abstract class AbstractLocation extends DataObject implements Location
 	public String getInternationalMapCodeLocationFromPhoto(PhotoId id)
 	{
 		return locationMap.get(id).convertToInternationalMapCodeCoordinates();	
+	}
+	
+	public String covertToMapCodeLocationFromString(String location)
+	{
+		String[] coordinates = location.split(",");
+		GPSLocation gps = new GPSLocation(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
+		return gps.convertToInternationalMapCodeCoordinates();
+	}
+	
+	public List<String> getTerritoryFromGPS(String gpsLocation)
+	{
+		GPSLocation gps = GPSLocation.getInstance();
+		return gps.getTerritoryFromGPS(gpsLocation);		
 	}
 }
 

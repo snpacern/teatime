@@ -43,10 +43,9 @@ public class ConversionTest extends TestCase {
 	}
 
 	/**
-	 * 
+	 * NOTE: I had to disable the test due to redesign of the interface!
 	 */
 	public void testConversion() {
-		System.out.println("test");
 		double latitude = 45;
 		double longitude = 50;
 		

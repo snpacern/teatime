@@ -154,8 +154,8 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 		page.addString(Photo.IMAGE, HtmlUtil.asImg(HtmlUtil.asPath(imageLink)));
 	}
 	
-	/**
-	 * @remark Added 23.11.2014
+	/*
+	 * 
 	 */
 	protected void makePhotoCaption(UserSession us, WebPart page) {
 		Photo photo = us.getPhoto();
@@ -163,7 +163,11 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 			
 		WebPart caption = createWebPart(us, PartUtil.CAPTION_INFO_FILE);
 		caption.addString(Photo.CAPTION, getPhotoCaption(us, photo));
+		
+		// Added 23.11.2014
 		caption.addString(Photo.LOCATION, getPhotoLocation(us, photo));
+		caption.addString(Photo.QUALITY, getTeaQuality(us, photo));
+		
 		page.addWritable(Photo.CAPTION, caption);
 	}
 

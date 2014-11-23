@@ -28,6 +28,7 @@ import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 import org.wahlzeit.maps.coordinates.*;
+import org.wahlzeit.teatime.*;
 
 /**
  * 
@@ -54,6 +55,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 		
 		// Added 23.11.2014
 		part.maskAndAddStringFromArgs(args, Photo.LOCATION);
+		part.maskAndAddStringFromArgs(args, Photo.QUALITY);		
 	}
 	
 	/**
@@ -83,8 +85,13 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			photo.setTags(new Tags(tags));
 			
 			// Added 23.11.2014
-			String[] coordinates = location.split(",");			
-			photo.setLocation(new GPSLocation(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1])));
+			String[] coordinates = location.split(",");		
+			
+			Location gpsLoc = new GPSLocation(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
+			photo.setLocation(gpsLoc);
+			
+			ITeaQualityPhoto tCat = new TeaCategories(gpsLoc.asString());
+			photo.setTeaQuality(tCat);
 
 			pm.savePhoto(photo);
 
