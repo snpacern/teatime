@@ -27,6 +27,7 @@ import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
+import org.wahlzeit.maps.coordinates.*;
 
 /**
  * 
@@ -48,8 +49,11 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	protected void doMakeWebPart(UserSession us, WebPart part) {
 		Map<String, Object> args = us.getSavedArgs();
 		part.addStringFromArgs(args, UserSession.MESSAGE);
-
+		
 		part.maskAndAddStringFromArgs(args, Photo.TAGS);
+		
+		// Added 23.11.2014
+		part.maskAndAddStringFromArgs(args, Photo.LOCATION);
 	}
 	
 	/**
@@ -57,7 +61,8 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	 */
 	protected String doHandlePost(UserSession us, Map args) {
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
-
+		String location = us.getAndSaveAsString(args, Photo.LOCATION);
+		
 		if (!StringUtil.isLegalTagsString(tags)) {
 			us.setMessage(us.cfg().getInputIsInvalid());
 			return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
@@ -76,6 +81,10 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			user.addPhoto(photo); 
 			
 			photo.setTags(new Tags(tags));
+			
+			// Added 23.11.2014
+			String[] coordinates = location.split(",");			
+			photo.setLocation(new GPSLocation(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1])));
 
 			pm.savePhoto(photo);
 

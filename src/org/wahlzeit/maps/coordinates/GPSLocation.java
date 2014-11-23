@@ -20,6 +20,10 @@
 
 package org.wahlzeit.maps.coordinates;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.mapcode.Mapcode;
 import com.mapcode.MapcodeCodec;
 
@@ -27,6 +31,12 @@ public class GPSLocation extends AbstractLocation
 {
 	private double latitude;
 	private double longitude;
+	
+	public GPSLocation()
+	{
+		this.latitude = 0.0;
+		this.longitude = 0.0;
+	}
 	
 	public GPSLocation(double latitude, double longitude)
 	{		
@@ -45,5 +55,49 @@ public class GPSLocation extends AbstractLocation
 	protected GPSCoordinates convertToGPSCoordinates() 
 	{
 		return new GPSCoordinates(latitude, longitude);
+	}
+	
+	public String asString()
+	{
+		System.out.println("Latitude: " + latitude + ", Longitude: " + longitude);
+		return Double.toString(latitude) + "," + Double.toString(longitude);
+	}
+
+	public Double getLatitude()
+	{
+		return latitude;
+	}
+	public Double getLongitude()
+	{
+		return longitude;
+	}
+	
+	@Override
+	public String getIdAsString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void readFrom(ResultSet rset) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeOn(ResultSet rset) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeId(PreparedStatement stmt, int pos) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getString() {
+		return "test";
 	}
 }

@@ -510,7 +510,7 @@ public abstract class AbstractModelConfig extends AbstractConfig implements Mode
 	public String getNoTags() {
 		return doGetValue("NoTags"); 
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -698,6 +698,12 @@ public abstract class AbstractModelConfig extends AbstractConfig implements Mode
 	 */
 	public String asPraiseString(double praise) {
 		return praiseFormatter.format(praise);
+	}
+	
+	// Added 23.11.2014
+	public String getNoLocation()
+	{
+		return doGetValue("location");
 	}
 	
 }

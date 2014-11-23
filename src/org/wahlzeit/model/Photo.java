@@ -25,6 +25,7 @@ import java.net.*;
 
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
+import org.wahlzeit.maps.coordinates.*;
 
 /**
  * A photo represents a user-provided (uploaded) photo.
@@ -45,13 +46,16 @@ public class Photo extends DataObject {
 	public static final String CAPTION = "caption";
 	public static final String DESCRIPTION = "description";
 	public static final String KEYWORDS = "keywords";
-
+	
+	// Added 23.11.2014
+	public static final String LOCATION = "location";
+	
+	
 	public static final String TAGS = "tags";
 
 	public static final String STATUS = "status";
 	public static final String IS_INVISIBLE = "isInvisible";
 	public static final String UPLOADED_ON = "uploadedOn";
-	//public static final String LOCATION = "location";
 	
 	/**
 	 * 
@@ -65,8 +69,7 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	protected PhotoId id = null;
-	
-	//protected String location = null;
+
 	/**
 	 * 
 	 */
@@ -103,6 +106,11 @@ public class Photo extends DataObject {
 	 */
 	protected int praiseSum = 10;
 	protected int noVotes = 1;
+	
+	/*
+	 * Added 23.11.2014
+	 */
+	protected Location creationLocation;
 	
 	/**
 	 * 
@@ -167,10 +175,22 @@ public class Photo extends DataObject {
 		noVotes = rset.getInt("no_votes");
 
 		creationTime = rset.getLong("creation_time");
-
-		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 		
-		//location = rset.getString("location");
+		// Added 23.11.2014		
+		String locationData = rset.getString("location");
+		String[] coordinates = {"0.0","0.0"};
+		
+		if (locationData != null)
+		{
+			if (locationData.contains(","))
+			{
+				coordinates = locationData.split(",");
+				System.out.println("Location for tags " + tags.asString() + ": " + coordinates[0]);
+			}
+		}
+		creationLocation = new GPSLocation(Double.parseDouble(coordinates[0]),Double.parseDouble(coordinates[1]));
+			
+		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 	}
 	
 	/**
@@ -190,16 +210,8 @@ public class Photo extends DataObject {
 		rset.updateInt("status", status.asInt());
 		rset.updateInt("praise_sum", praiseSum);
 		rset.updateInt("no_votes", noVotes);
-		rset.updateLong("creation_time", creationTime);	
-		
-		// This updates the location in the database
-		//double latitude = 34;
-		//double longitude = 40;
-		
-		//AbstractLocation alocation = new GPSLocation(latitude, longitude);
-		//alocation.addLocationToPhoto(id, latitude, longitude);
-		
-		//rset.updateString("location", location);
+		rset.updateLong("creation_time", creationTime);
+		rset.updateString("location", creationLocation.asString());
 	}
 
 	/**
@@ -277,6 +289,19 @@ public class Photo extends DataObject {
 		return cfg.asPhotoCaption(ownerName, ownerHomePage);
 	}
 
+	/*
+	 * Added 23.11.2014 
+	 */
+	public void setLocation(Location newLocation)
+	{
+		creationLocation = newLocation;
+		incWriteCount();
+	}
+	public String getLocation(ModelConfig cfg)
+	{
+		return cfg.asPhotoLocation(creationLocation.asString());
+	}
+	
 	/**
 	 * 
 	 * @methodtype get

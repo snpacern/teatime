@@ -36,12 +36,14 @@ public class PhotoFilter {
 	 */
 	public static final String USER_NAME = "userName";
 	public static final String TAGS = "tags";
+	public static final String LOCATION = "location";
 	
 	/**
 	 *
 	 */
 	protected String userName = "";
 	protected Tags tags = Tags.EMPTY_TAGS;
+	protected String location = "0.0,0.0";
 	
 	/**
 	 * 
@@ -68,12 +70,26 @@ public class PhotoFilter {
 		return userName;
 	}
 	
+	/*
+	 * Added 23.11.2014
+	 */
+	public String getLocation()
+	{
+		return location;
+	}
+	public void setLocation(String newLocation)
+	{
+		location = newLocation;
+	}
+	
 	/**
 	 * 
 	 */
 	public void clear() {
         setUserName("");
         setTags(Tags.EMPTY_TAGS);
+        // Added 23.11.2014
+        setLocation("");
 		displayablePhotoIds.clear();
 		processedPhotoIds.clear();
 	}

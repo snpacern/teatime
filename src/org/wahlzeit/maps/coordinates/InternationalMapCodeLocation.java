@@ -20,6 +20,10 @@
 
 package org.wahlzeit.maps.coordinates;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.mapcode.MapcodeCodec;
 import com.mapcode.Point;
 import com.mapcode.UnknownMapcodeException;
@@ -56,4 +60,37 @@ public class InternationalMapCodeLocation extends AbstractLocation
 		return new GPSCoordinates(p.getLatDeg(), p.getLonDeg());
 	}
 
+	public String asString()
+	{
+		return mapCode;
+	}
+
+	@Override
+	public String getIdAsString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void readFrom(ResultSet rset) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeOn(ResultSet rset) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeId(PreparedStatement stmt, int pos) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getString() {
+		return "test";
+	}
 }

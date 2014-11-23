@@ -133,6 +133,9 @@ public interface ModelConfig extends Configuration {
 	public String getNoCharacterName();
 	public String getNoSeriesName();
 	public String getNoTags();
+	
+	// Added 23.11.2014
+	public String getNoLocation();
 
 	// EDIT_USER_PROFILE_FORM
 	public String getProfileUpdateSucceeded();
@@ -194,4 +197,8 @@ public interface ModelConfig extends Configuration {
 	public String asPhotoCaption(String un, URL url);
 	public String asPraiseString(double praise);
 
+	// Location (Added 23.11.2014)
+	public String asPhotoLocation(String un);
+	public String getPhotoLocation();
+	
 }

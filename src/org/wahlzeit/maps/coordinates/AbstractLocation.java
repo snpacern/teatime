@@ -24,8 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.wahlzeit.model.PhotoId;
+import org.wahlzeit.services.DataObject;
 
-public abstract class AbstractLocation 
+public abstract class AbstractLocation extends DataObject implements Location 
 {	
 	private static Map<PhotoId, AbstractLocation> locationMap = new HashMap<PhotoId, AbstractLocation>();
 
@@ -53,13 +54,13 @@ public abstract class AbstractLocation
 		locationMap.put(id, location);
 	}
 	
-	public static GPSCoordinates getGPSLocationFromPhoto(PhotoId id)
+	public GPSCoordinates getGPSLocationFromPhoto(PhotoId id)
 	{
 		GPSCoordinates gps = locationMap.get(id).convertToGPSCoordinates();		
 		return gps;
 	}
 	
-	public static String getInternationalMapCodeLocationFromPhoto(PhotoId id)
+	public String getInternationalMapCodeLocationFromPhoto(PhotoId id)
 	{
 		return locationMap.get(id).convertToInternationalMapCodeCoordinates();	
 	}

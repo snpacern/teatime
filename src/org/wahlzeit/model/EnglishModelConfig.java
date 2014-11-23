@@ -85,4 +85,20 @@ public class EnglishModelConfig extends AbstractModelConfig {
 		return "We set the photo size to " + size + ".";
 	}
 
+	/*
+	 * Added 23.11.2014
+	 */
+	public String asPhotoLocation(String un)
+	{
+		String result = "Location: ";
+		result += un;
+		return result;
+	}
+
+	@Override
+	public String getPhotoLocation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

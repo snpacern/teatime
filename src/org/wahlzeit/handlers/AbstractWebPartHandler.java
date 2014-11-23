@@ -99,6 +99,14 @@ public abstract class AbstractWebPartHandler implements WebPartHandler {
 	}
 	
 	/**
+	 * Added 23.11.2014
+	 */
+	protected String getPhotoLocation(UserSession us, Photo photo) 
+	{
+		return photo.getLocation(us.cfg());
+	}
+	
+	/**
 	 * 
 	 */
 	protected final WebFormHandler getFormHandler(String name) {

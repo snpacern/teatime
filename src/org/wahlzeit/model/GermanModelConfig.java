@@ -84,5 +84,21 @@ public class GermanModelConfig extends AbstractModelConfig {
 		String size = HtmlUtil.asBold(asValueString(ss));
 		return "Wir haben die Fotogröße auf " + size + " gesetzt.";
 	}
+	
+	/*
+	 * Added 23.11.2014
+	 */
+	public String asPhotoLocation(String un)
+	{
+		String result = "Ort: ";
+		result += un;
+		return result;
+	}
+
+	@Override
+	public String getPhotoLocation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -26,6 +26,7 @@ import java.util.*;
 
 import org.wahlzeit.main.*;
 import org.wahlzeit.services.*;
+import org.wahlzeit.maps.coordinates.*;
 
 /**
  * A photo manager provides access to and manages photos.
@@ -345,8 +346,12 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	public Photo createPhoto(File file) throws Exception {
-		PhotoId id = PhotoId.getNextId();
+		PhotoId id = PhotoId.getNextId();	
 		Photo result = PhotoUtil.createPhoto(file, id);
+		
+		// Added 23.11.2014
+		result.setLocation(new GPSLocation());
+		
 		addPhoto(result);
 		return result;
 	}
@@ -359,5 +364,5 @@ public class PhotoManager extends ObjectManager {
 			throw new IllegalStateException("Photo already exists!");
 		}
 	}
-
+	
 }

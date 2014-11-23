@@ -155,7 +155,7 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 	}
 	
 	/**
-	 * 
+	 * @remark Added 23.11.2014
 	 */
 	protected void makePhotoCaption(UserSession us, WebPart page) {
 		Photo photo = us.getPhoto();
@@ -163,6 +163,7 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 			
 		WebPart caption = createWebPart(us, PartUtil.CAPTION_INFO_FILE);
 		caption.addString(Photo.CAPTION, getPhotoCaption(us, photo));
+		caption.addString(Photo.LOCATION, getPhotoLocation(us, photo));
 		page.addWritable(Photo.CAPTION, caption);
 	}
 

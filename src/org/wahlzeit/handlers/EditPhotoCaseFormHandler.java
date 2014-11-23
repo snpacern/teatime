@@ -69,6 +69,12 @@ public class EditPhotoCaseFormHandler extends AbstractWebFormHandler {
 		tags = !StringUtil.isNullOrEmptyString(tags) ? tags : us.cfg().getNoTags();
 		part.maskAndAddString(Photo.TAGS, tags);
 		
+		// Added 23.11.2014
+//		String location = photo.getLocation(us.cfg());
+//		System.out.println(location);
+//		location = !StringUtil.isNullOrEmptyString(location) ? location : us.cfg().getNoLocation();
+//		part.maskAndAddString(Photo.LOCATION, location);
+		
 		String photoId = photo.getId().asString();
 		part.addString(Photo.LINK, HtmlUtil.asHref(getResourceAsRelativeHtmlPathString(photoId)));
 
