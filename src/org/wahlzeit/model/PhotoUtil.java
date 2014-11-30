@@ -23,9 +23,11 @@ package org.wahlzeit.model;
 import java.io.*;
 import java.awt.*;
 import java.awt.image.*;
+
 import javax.imageio.*;
 
 import org.wahlzeit.services.*;
+import org.wahlzeit.teatime.TeaTimePhoto;
 
 /**
  * PhotoUtil provides a set of utility functions to create defined images.
@@ -41,6 +43,17 @@ public class PhotoUtil {
 	 */
 	public static Photo createPhoto(File source, PhotoId id) throws Exception {
 		Photo result = PhotoFactory.getInstance().createPhoto(id);
+		
+		Image sourceImage = createImageFiles(source, id);
+
+		int sourceWidth = sourceImage.getWidth(null);
+		int sourceHeight = sourceImage.getHeight(null);
+		result.setWidthAndHeight(sourceWidth, sourceHeight);
+
+		return result;
+	}
+	public static TeaTimePhoto createQualityPhoto(File source, PhotoId id) throws Exception {
+		TeaTimePhoto result = PhotoFactory.getInstance().createQualityPhoto(id);
 		
 		Image sourceImage = createImageFiles(source, id);
 

@@ -352,6 +352,16 @@ public class PhotoManager extends ObjectManager {
 		
 		// Added 23.11.2014
 		result.setLocation(new GPSLocation());
+		//result.setTeaQuality(new TeaCategories());
+		
+		addPhoto(result);
+		return result;
+	}	
+	public Photo createQualityPhoto(File file) throws Exception {
+		PhotoId id = PhotoId.getNextId();	
+		TeaTimePhoto result = PhotoUtil.createQualityPhoto(file, id);
+		
+		// Added 30.11.2014
 		result.setTeaQuality(new TeaCategories());
 		
 		addPhoto(result);

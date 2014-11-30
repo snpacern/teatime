@@ -1,7 +1,7 @@
 package org.wahlzeit.teatime;
 
-public abstract class ATeaFromCountry {
-	
+public abstract class ATeaFromCountry 
+{	
 	/*
 	 * Returns the quality of a tea
 	 * @methodtype get

@@ -48,9 +48,21 @@ public class QualityTest extends TestCase {
 		ITeaQualityPhoto tea = new TeaCategories("CHINA");
 		
 		// Test for equality
-		assertEquals("Excellent Quality! :D", tea.asString());
+		assertEquals("Superb! :D", tea.asString());
 		// Test for inequality
 		assertNotSame("Not so good ... V:", tea.asString());
+	}
+	
+	public void testValueObject()
+	{
+		ATeaQualityPhoto chn1 = new TeaCategories("CHINA");
+		ATeaQualityPhoto ind1 = new TeaCategories("INDIA");
+		ATeaQualityPhoto chn2 = new TeaCategories("CHINA");
+		
+		assertFalse(chn1.getQuality() == ind1.getQuality());
+		System.out.println(chn1.getQuality());
+		System.out.println(ind1.getQuality());
+							
 	}
 
 }

@@ -23,6 +23,7 @@ package org.wahlzeit.model;
 import java.sql.*;
 
 import org.wahlzeit.services.*;
+import org.wahlzeit.teatime.*;
 
 /**
  * 
@@ -93,6 +94,26 @@ public class PhotoFactory {
 	 */
 	public Photo createPhoto(ResultSet rs) throws SQLException {
 		return new Photo(rs);
+	}
+	
+	
+	// Added 30.11.2014
+	public TeaTimePhoto createQualityPhoto() {
+		return new TeaTimePhoto ();
+	}
+	
+	/**
+	 * 
+	 */
+	public TeaTimePhoto createQualityPhoto(PhotoId id) {
+		return new TeaTimePhoto (id);
+	}
+	
+	/**
+	 * 
+	 */
+	public TeaTimePhoto createQualityPhoto(ResultSet rs) throws SQLException {
+		return new TeaTimePhoto (rs);
 	}
 	
 	/**

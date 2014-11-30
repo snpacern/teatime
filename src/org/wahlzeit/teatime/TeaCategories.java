@@ -1,9 +1,14 @@
 package org.wahlzeit.teatime;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.wahlzeit.maps.coordinates.*;
 
 public class TeaCategories extends ATeaQualityPhoto 
-{
+{	
 	/*
 	 * #methodtype constructor
 	 */
@@ -16,18 +21,19 @@ public class TeaCategories extends ATeaQualityPhoto
 	 * Constructor and initializer for territory map 
 	 * #methodtype constructor
 	 */
-	public TeaCategories(String loc)
+	public TeaCategories(String location)
 	{
+		System.out.println("Creating TeaCategory");
 		// I cannot check for the validity of loc because 
 		// I'm unable to use my Location interface, this is
 		// why I'm omitting the precondition check here
-		RegisterTerritory(TeaFromChina.CHNterritory, TeaFromChina.getInstance());
+		//RegisterTerritory(TeaFromChina.CHNterritory, TeaFromChina.getInstance());
 		// Check postcondition
 		assert(m_territory.size() >= 0);
 		
-		this.gpsLocation = loc;
+		this.gpsLocation = location;
 	}
-
+	
 	/*
 	 * Finds territories via Location Interface,
 	 * converts those into Strings and returns them
@@ -54,23 +60,24 @@ public class TeaCategories extends ATeaQualityPhoto
 	 * @methodtype get
 	 * @methodproperties primitive
 	 */
-	public String getQuality(String territory) {
+	public String getQuality() {
+		System.out.println("Looking for Territory " + gpsLocation);
 		// Precondition: territory not null or empty
 		// territory is usually valid, as it is checked by MapCode
 		// (which I am currently not able to use, as my Location interface
 		// seems to be incorrectly implemented)
-		assert(territory != null);
-		assert(territory != "");
-		
+		assert(gpsLocation != null);
+		assert(gpsLocation != "");
+			
 		// For now: set territory manually to China
-		territory = TeaFromChina.CHNterritory;
-		String quality = m_territory.get(territory).getQuality();
+		//gpsLocation = TeaFromChina.CHNterritory;
+		TeaTerritoryQuality quality = m_territory.get(gpsLocation);
 		
 		// Postcondition: quality not null or empty
-		assert(quality != null);
-		assert(quality != "");
+		assert(quality.getQuality() != null);
+		assert(quality.getQuality() != "");
 		
-		return quality;		
+		return quality.getQuality();		
 	}
 	
 	/*
@@ -80,7 +87,7 @@ public class TeaCategories extends ATeaQualityPhoto
 	 */
 	@Override
 	public String asString() {
-		String ret_quality = getQuality(gpsLocation);
+		String ret_quality = getQuality();
 		assert(ret_quality != null);
 		assert(ret_quality != "");
 		
@@ -88,5 +95,4 @@ public class TeaCategories extends ATeaQualityPhoto
 	}
 	
 	private String gpsLocation;
-
 }

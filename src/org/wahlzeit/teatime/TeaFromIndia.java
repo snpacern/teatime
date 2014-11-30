@@ -5,14 +5,14 @@ import java.lang.ref.WeakReference;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class TeaFromChina extends ATeaFromCountry
-{
-	public final static String CHNterritory = "45.0,45.0";
+public class TeaFromIndia extends ATeaFromCountry
+{	
+	public final static String INDterritory = "30.0,30.0";
 	private final String quality = "Excellent Quality! :D";
 
-	public TeaFromChina(String location)
+	public TeaFromIndia(String location)
 	{
-		//TeaTerritoryQuality.getInstance(location, this.quality);
+		TeaTerritoryQuality.getInstance(location, this.quality);
 	}	
 	
 	/*
