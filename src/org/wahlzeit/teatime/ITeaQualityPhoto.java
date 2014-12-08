@@ -9,6 +9,8 @@
 
 package org.wahlzeit.teatime;
 
+
+
 public interface ITeaQualityPhoto {
 
 	/*
@@ -17,4 +19,12 @@ public interface ITeaQualityPhoto {
 	 * @methodproperties primitive, hook
 	 */
 	public String asString();
+	
+	/*
+	 * @methodtype get
+	 * @methodproperties primitive, hook
+	 */
+	public String getQuality(String location);
+	
+	
 }

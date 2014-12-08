@@ -9,18 +9,22 @@ import org.wahlzeit.model.PhotoId;
 
 
 
-public class TeaTimePhoto extends Photo 
+public class TeaPhoto extends Photo 
 {
-	public static final String QUALITY = "quality";
-	protected ITeaQualityPhoto teaQuality;
 	
-	public TeaTimePhoto(){
+	TeaFactory tea = new Pfefferminze();
+	
+	public static final String QUALITY = "quality";
+	
+	protected ITeaQualityPhoto teaQuality = null;
+
+	public TeaPhoto(){
 		super();
 	}
-	public TeaTimePhoto(PhotoId id){
+	public TeaPhoto(PhotoId id){
 		super(id);		
 	}
-	public TeaTimePhoto(ResultSet rs) throws SQLException{
+	public TeaPhoto(ResultSet rs) throws SQLException{
 		super(rs);
 	}
 	
@@ -44,5 +48,6 @@ public class TeaTimePhoto extends Photo
 		super.writeOn(rset);
 		rset.updateString("quality", teaQuality.asString());
 	}
+	
 	
 }

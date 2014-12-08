@@ -10,7 +10,7 @@ import org.wahlzeit.maps.coordinates.*;
 public class TeaCategories extends ATeaQualityPhoto 
 {	
 	/*
-	 * #methodtype constructor
+	 * @methodtype constructor
 	 */
 	public TeaCategories()
 	{
@@ -19,7 +19,7 @@ public class TeaCategories extends ATeaQualityPhoto
 	
 	/*
 	 * Constructor and initializer for territory map 
-	 * #methodtype constructor
+	 * @methodtype constructor
 	 */
 	public TeaCategories(String location)
 	{
@@ -43,6 +43,7 @@ public class TeaCategories extends ATeaQualityPhoto
 	 */
 	protected String findTerritories(String territory)
 	{
+		assert(!territory.isEmpty());
 		String[] coordinates = territory.split(",");
 		Location gps = GPSLocation.getInstance();
 		List<String> possibleTerritories = gps.getTerritoryFromGPS(territory);
@@ -60,7 +61,8 @@ public class TeaCategories extends ATeaQualityPhoto
 	 * @methodtype get
 	 * @methodproperties primitive
 	 */
-	public String getQuality() {
+	public String getQuality(String location) {
+		gpsLocation = location;
 		System.out.println("Looking for Territory " + gpsLocation);
 		// Precondition: territory not null or empty
 		// territory is usually valid, as it is checked by MapCode
@@ -69,9 +71,14 @@ public class TeaCategories extends ATeaQualityPhoto
 		assert(gpsLocation != null);
 		assert(gpsLocation != "");
 			
+		
+		// just a little failsafe
+		if (!location.contains(".")) 
+			location = "45.0,45.0";
+		
 		// For now: set territory manually to China
 		//gpsLocation = TeaFromChina.CHNterritory;
-		TeaTerritoryQuality quality = m_territory.get(gpsLocation);
+		TeaTerritoryQuality quality = m_territory.get(location);
 		
 		// Postcondition: quality not null or empty
 		assert(quality.getQuality() != null);
@@ -87,7 +94,7 @@ public class TeaCategories extends ATeaQualityPhoto
 	 */
 	@Override
 	public String asString() {
-		String ret_quality = getQuality();
+		String ret_quality = getQuality(gpsLocation);
 		assert(ret_quality != null);
 		assert(ret_quality != "");
 		
@@ -95,4 +102,5 @@ public class TeaCategories extends ATeaQualityPhoto
 	}
 	
 	private String gpsLocation;
+
 }

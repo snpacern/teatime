@@ -55,7 +55,7 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 * 
 	 */
-	public static final PhotoManager getInstance() {
+	public static PhotoManager getInstance() {
 		return instance;
 	}
 	
@@ -359,7 +359,7 @@ public class PhotoManager extends ObjectManager {
 	}	
 	public Photo createQualityPhoto(File file) throws Exception {
 		PhotoId id = PhotoId.getNextId();	
-		TeaTimePhoto result = PhotoUtil.createQualityPhoto(file, id);
+		TeaPhoto result = PhotoUtil.createQualityPhoto(file, id);
 		
 		// Added 30.11.2014
 		result.setTeaQuality(new TeaCategories());

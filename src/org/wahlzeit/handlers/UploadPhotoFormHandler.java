@@ -55,7 +55,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 		
 		// Added 23.11.2014
 		part.maskAndAddStringFromArgs(args, Photo.LOCATION);
-		part.maskAndAddStringFromArgs(args, TeaTimePhoto.QUALITY);		
+		part.maskAndAddStringFromArgs(args, TeaPhoto.QUALITY);		
 	}
 	
 	/**
@@ -92,14 +92,17 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 				photo = pm.createPhoto(file);
 			}
 			
-			if (photo instanceof TeaTimePhoto)
+			if (photo instanceof TeaPhoto)
 			{
-				TeaTimePhoto ttp = (TeaTimePhoto) photo;
+				TeaPhoto ttp = (TeaPhoto) photo;
 				
-				TeaCategories tCat = new TeaCategories(gpsLoc.asString());
-				ttp.setTeaQuality(tCat);
+				TeaFactory tea = new Pfefferminze();
+				ITeaQualityPhoto quality = tea.createCategoryObject(location);
+								
+				//TeaCategories tCat = new TeaCategories(gpsLoc.asString());
+				ttp.setTeaQuality(quality);
 				
-				System.out.println("Added TeaQuality");
+				//System.out.println("Added TeaQuality");
 			}
 			
 			String targetFileName = SysConfig.getBackupDir().asString() + photo.getId().asString();

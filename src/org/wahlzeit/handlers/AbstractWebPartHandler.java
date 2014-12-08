@@ -25,7 +25,7 @@ import java.util.*;
 
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
-import org.wahlzeit.teatime.TeaTimePhoto;
+import org.wahlzeit.teatime.TeaPhoto;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 
@@ -106,7 +106,7 @@ public abstract class AbstractWebPartHandler implements WebPartHandler {
 	{
 		return photo.getLocation(us.cfg());
 	}
-	protected String getTeaQuality(UserSession us, TeaTimePhoto photo)
+	protected String getTeaQuality(UserSession us, TeaPhoto photo)
 	{
 		return photo.getTeaQuality(us.cfg());
 	}

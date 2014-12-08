@@ -10,15 +10,22 @@ public class TeaTerritoryQuality implements Serializable
 {
 	private static final long serialVersionUID = 1068538253233559877L;
 	
+	
+	/*
+	 * @methodtype ctor
+	 */
 	public TeaTerritoryQuality(String location, String quality)
 	{
 		this.location = location;
 		this.quality = quality;
 	}
 	
+	/*
+	 * @methodtype get
+	 */
 	public static TeaTerritoryQuality getInstance(String location, String quality)
 	{		
-		System.out.println(":D");
+		assert(!location.isEmpty() && !quality.isEmpty());
 		WeakReference<TeaTerritoryQuality> cached = cache.get(location);
 		if (cached == null)
 		{
@@ -26,9 +33,14 @@ public class TeaTerritoryQuality implements Serializable
 			cache.put(location, new WeakReference<TeaTerritoryQuality>(cached.get()));
 		}
 		
+		assert(!cached.equals(null));
+		
 		return cached.get();
 	}
 	
+	/*
+	 * @methodtype get
+	 */
 	public String getQuality()
 	{
 		return this.quality;

@@ -98,22 +98,22 @@ public class PhotoFactory {
 	
 	
 	// Added 30.11.2014
-	public TeaTimePhoto createQualityPhoto() {
-		return new TeaTimePhoto ();
+	public TeaPhoto createQualityPhoto() {
+		return new TeaPhoto ();
+	}
+	
+	/**
+	 * CHANGE to createTeaPhoto
+	 */
+	public TeaPhoto createQualityPhoto(PhotoId id) {
+		return new TeaPhoto (id);
 	}
 	
 	/**
 	 * 
 	 */
-	public TeaTimePhoto createQualityPhoto(PhotoId id) {
-		return new TeaTimePhoto (id);
-	}
-	
-	/**
-	 * 
-	 */
-	public TeaTimePhoto createQualityPhoto(ResultSet rs) throws SQLException {
-		return new TeaTimePhoto (rs);
+	public TeaPhoto createQualityPhoto(ResultSet rs) throws SQLException {
+		return new TeaPhoto (rs);
 	}
 	
 	/**
@@ -129,5 +129,4 @@ public class PhotoFactory {
 	public PhotoTagCollector createPhotoTagCollector() {
 		return new PhotoTagCollector();
 	}
-
 }

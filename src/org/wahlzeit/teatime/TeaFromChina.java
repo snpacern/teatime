@@ -12,7 +12,7 @@ public class TeaFromChina extends ATeaFromCountry
 
 	public TeaFromChina(String location)
 	{
-		//TeaTerritoryQuality.getInstance(location, this.quality);
+		TeaTerritoryQuality.getInstance(location, this.quality);
 	}	
 	
 	/*

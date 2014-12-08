@@ -13,7 +13,11 @@ public abstract class ATeaQualityPhoto implements ITeaQualityPhoto
 	 */
 	public abstract String asString();	
 	
-	public abstract String getQuality();
+	/*
+	 * @methodtype get
+	 * @methodproperties primitive, hook
+	 */
+	public abstract String getQuality(String location);
 	
 	protected final static Map<String, TeaTerritoryQuality> m_territory;
 	static
@@ -22,7 +26,8 @@ public abstract class ATeaQualityPhoto implements ITeaQualityPhoto
 		t_Map.put(TeaFromChina.CHNterritory, TeaTerritoryQuality.getInstance(TeaFromChina.CHNterritory, "Superb! :D"));
 		t_Map.put(TeaFromIndia.INDterritory, TeaTerritoryQuality.getInstance(TeaFromIndia.INDterritory, "Excellent Quality! :D"));
 		
-		m_territory = Collections.unmodifiableMap(t_Map);		
+		m_territory = Collections.unmodifiableMap(t_Map);
 	}
+	
 	
 }

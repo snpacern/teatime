@@ -24,7 +24,7 @@ import java.util.*;
 
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
-import org.wahlzeit.teatime.TeaTimePhoto;
+import org.wahlzeit.teatime.TeaPhoto;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 
@@ -168,9 +168,9 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 		// Added 30.11.2014
 		caption.addString(Photo.LOCATION, getPhotoLocation(us, photo));
 		
-		if (photo instanceof TeaTimePhoto)
+		if (photo instanceof TeaPhoto)
 		{
-			caption.addString(TeaTimePhoto.QUALITY, getTeaQuality(us, (TeaTimePhoto)photo));
+			caption.addString(TeaPhoto.QUALITY, getTeaQuality(us, (TeaPhoto)photo));
 		}
 		
 		page.addWritable(Photo.CAPTION, caption);
