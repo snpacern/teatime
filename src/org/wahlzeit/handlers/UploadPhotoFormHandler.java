@@ -28,7 +28,9 @@ import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 import org.wahlzeit.maps.coordinates.*;
-import org.wahlzeit.teatime.*;
+import org.wahlzeit.tea.Tea;
+import org.wahlzeit.tea.TeaManager;
+import org.wahlzeit.tea.TeaPhoto;
 
 /**
  * 
@@ -96,11 +98,13 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			{
 				TeaPhoto ttp = (TeaPhoto) photo;
 				
-				TeaFactory tea = new Pfefferminze();
-				ITeaQualityPhoto quality = tea.createCategoryObject(location);
-								
+				//TeaFactory tea = new Pfefferminze();
+				//ITeaQualityPhoto quality = tea.createCategoryObject(location);
 				//TeaCategories tCat = new TeaCategories(gpsLoc.asString());
-				ttp.setTeaQuality(quality);
+				
+				Tea tea = TeaManager.getInstance(location).search("Peppermint");
+				
+				ttp.setTeaQuality(tea);
 				
 				//System.out.println("Added TeaQuality");
 			}

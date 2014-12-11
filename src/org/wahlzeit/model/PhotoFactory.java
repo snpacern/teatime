@@ -23,7 +23,7 @@ package org.wahlzeit.model;
 import java.sql.*;
 
 import org.wahlzeit.services.*;
-import org.wahlzeit.teatime.*;
+import org.wahlzeit.tea.*;
 
 /**
  * 

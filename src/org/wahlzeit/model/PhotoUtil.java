@@ -27,7 +27,7 @@ import java.awt.image.*;
 import javax.imageio.*;
 
 import org.wahlzeit.services.*;
-import org.wahlzeit.teatime.TeaPhoto;
+import org.wahlzeit.tea.TeaPhoto;
 
 /**
  * PhotoUtil provides a set of utility functions to create defined images.

@@ -24,7 +24,7 @@ import java.util.*;
 
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
-import org.wahlzeit.teatime.TeaPhoto;
+import org.wahlzeit.tea.TeaPhoto;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 
