@@ -9,43 +9,74 @@ import org.wahlzeit.model.PhotoId;
 
 
 
-public class TeaPhoto extends Photo 
-{
+public class TeaPhoto extends Photo {
 	
 	public static final String QUALITY = "quality";
+	
+	// TEATYPE is a constant here, but it can easily be
+	// used as a variable that can be set e.g. via the
+	// UI
 	public static final String TEATYPE = "peppermint";
 	
-	protected Tea teaQuality = null;
+	protected Tea tea = null;
 
+	/*
+	 * @methodtype constructor
+	 */
 	public TeaPhoto(){
 		super();
 	}
+	
+	/*
+	 * @methodtype constructor 
+	 */
 	public TeaPhoto(PhotoId id){
 		super(id);		
 	}
+	
+	/*
+	 * @methodtype constructor
+	 */
 	public TeaPhoto(ResultSet rs) throws SQLException{
 		super(rs);
 	}
 	
+	/*
+	 * @methodtype set
+	 * @methodproperties composed
+	 */
 	public void setTeaQuality(Tea teaTime)
 	{
-		teaQuality = teaTime;
+		tea = teaTime;
 		incWriteCount();
 	}
+	
+	/*
+	 * @methodtype get
+	 * @methodproperties primitive
+	 */
 	public String getTeaQuality(ModelConfig cfg)
 	{
-		return cfg.getTeaQuality(teaQuality.getQuality());
+		return cfg.getTeaQuality(tea.getQuality());
 	}
 	
+	/*
+	 * @methodtype get
+	 * @methodproperties composed
+	 */
 	public void readFrom(ResultSet rset) throws SQLException 
 	{
 		super.readFrom(rset);
-		teaQuality = TeaManager.getInstance(creationLocation.asString()).search(TEATYPE);
+		tea = TeaManager.getInstance(creationLocation.asString()).search(TEATYPE);
 	}
 	
+	/*
+	 * @methodtype set
+	 * @methodproperties composed
+	 */
 	public void writeOn(ResultSet rset) throws SQLException {
 		super.writeOn(rset);
-		rset.updateString("quality", teaQuality.getQuality());
+		rset.updateString("quality", tea.getQuality());
 	}
 	
 }

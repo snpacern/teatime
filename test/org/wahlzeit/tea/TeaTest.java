@@ -34,14 +34,12 @@ public class TeaTest extends TestCase {
 	}
 
 	public void testTeaManager() {
-		
 		Tea chinaPeppermint = TeaManager.getInstance("45,45").search("Peppermint");
-		//Tea indiaPeppermint = TeaManager.getInstance("30.0,30.0").search("Peppermint");
 		
 		String quality = chinaPeppermint.getQuality();
 		
 		System.out.println(quality);
-		
+		assertEquals("Superb! :D", quality);
 	}
 	
 }

@@ -4,14 +4,27 @@ import java.lang.ref.WeakReference;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/*
+ * TeaQuality is a Value Object. It uses a WeakReference HashMap that 
+ * enables TeaQuality to be a shared Value Object. It uses location
+ * information to get information about tea quality values.  
+ */
+
 
 
 public class TeaQuality implements ITeaQuality {
 
+	/*
+	 * @methodtype constructor
+	 */
 	public TeaQuality(Tea tea) {
 		this.tea_ = tea;
 	}
 
+	/*
+	 * @methodtype factory
+	 * @methodproperties class
+	 */
 	public static TeaQuality getInstance(Tea tea) {		
 		WeakReference<TeaQuality> cached = cache.get(tea);
 		if (cached == null)
@@ -27,11 +40,19 @@ public class TeaQuality implements ITeaQuality {
 		return cached.get();
 	}
 	
+	/*
+	 * @methodtype get
+	 * @methodproperties primitive, hook
+	 */
 	public String getQuality() {
 		System.out.println("Getting TeaQuality.");
 		return asString();
 	}
 
+	/*
+	 * @methodtype helper
+	 * @methodproperties convenience, composed
+	 */
 	private String asString() {
 		QualityValue qv = QualityValue.get(this.tea_.getLocation());
 		return qv.getQuality();
