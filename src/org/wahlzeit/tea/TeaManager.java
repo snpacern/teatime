@@ -28,12 +28,15 @@ public class TeaManager {
 	 * @methodproperties class
 	 */
 	static public TeaManager getInstance(String location) {
+		assert(!location.isEmpty());
 		if (instance == null) {
 			System.out.println("TeaManager created.");
 			return new TeaManager(location);
 		}
 		
 		System.out.println("TeaManager created.");
+		
+		assert(instance != null);
 		
 		return instance;
 	}
@@ -43,6 +46,7 @@ public class TeaManager {
 	 * @methodproperties class
 	 */
 	public Tea search(String typeName) {
+		assert(!typeName.isEmpty());
 		System.out.println("typeName: " + typeName + ", location: " + this.location_);		
 		return new TeaType(typeName, this.location_).newInstance();
 	}

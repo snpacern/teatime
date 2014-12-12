@@ -41,6 +41,8 @@ public enum QualityValue {
 	 * @methodproperties composed
 	 */
 	public static QualityValue get(String location) {
+		assert(!location.isEmpty());
+		assert(location.contains(","));
 		System.out.println("Getting QualityValue from location: " + location);
 		String lookUpString = isValid(location);
 		return lookUp.get(lookUpString);
@@ -69,6 +71,8 @@ public enum QualityValue {
 			validLocation += coordinates[1] + ".0";
 		}
 	
+		assert(!validLocation.isEmpty() && validLocation != null);
+		
 		return validLocation;
 	}
 	

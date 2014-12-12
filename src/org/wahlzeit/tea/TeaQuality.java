@@ -26,6 +26,8 @@ public class TeaQuality implements ITeaQuality {
 	 * @methodproperties class
 	 */
 	public static TeaQuality getInstance(Tea tea) {		
+		assert(tea != null);
+		
 		WeakReference<TeaQuality> cached = cache.get(tea);
 		if (cached == null)
 		{
@@ -55,6 +57,7 @@ public class TeaQuality implements ITeaQuality {
 	 */
 	private String asString() {
 		QualityValue qv = QualityValue.get(this.tea_.getLocation());
+		assert(qv != null);
 		return qv.getQuality();
 	}
 		

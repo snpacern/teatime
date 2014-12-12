@@ -24,6 +24,7 @@ public class Tea {
 	 */
 	public String getQuality() {
 		quality_ = TeaQuality.getInstance(this);
+		assert(quality_ != null);
 		return quality_.getQuality();
 	}
 	

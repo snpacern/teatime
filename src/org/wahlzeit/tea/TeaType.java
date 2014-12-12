@@ -13,6 +13,7 @@ public class TeaType {
 	 * @methodtype constructor
 	 */
 	public TeaType(String typeName, String location) {
+		assert(!typeName.isEmpty() && !location.isEmpty());
 		this.typeName_ = typeName;
 		this.location_ = location;
 	}
