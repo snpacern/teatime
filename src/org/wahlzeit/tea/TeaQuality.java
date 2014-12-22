@@ -7,7 +7,9 @@ import java.util.Map;
 /*
  * TeaQuality is a Value Object. It uses a WeakReference HashMap that 
  * enables TeaQuality to be a shared Value Object. It uses location
- * information to get information about tea quality values.  
+ * information to get information about tea quality values.
+ * 
+ * TeaQuality has a collaboration with QualityValue.
  */
 
 
