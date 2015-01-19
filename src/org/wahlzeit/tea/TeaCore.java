@@ -12,6 +12,10 @@ import java.util.Map;
 public class TeaCore implements TeaBehaviour {
 	
 	public TeaRole getRole(String spec) {
+		if (spec.isEmpty() || spec == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		Creator c = new Creator(spec);
 		return c.get();
 	}

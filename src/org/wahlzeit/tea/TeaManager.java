@@ -18,6 +18,9 @@ public class TeaManager {
 	 * @methodtype constructor
 	 */
 	private TeaManager(String location) {
+		//  No need for exception handling here, as
+		//  location is already checked in the singleton
+		//  pattern
 		this.location_ = location;
 	}
 	
@@ -28,7 +31,13 @@ public class TeaManager {
 	 * @methodproperties class
 	 */
 	static public TeaManager getInstance(String location) {
-		assert(!location.isEmpty());
+		//assert(!location.isEmpty());
+		
+		if (location.isEmpty() || location == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		//  Should never fail
 		if (instance == null) {
 			System.out.println("TeaManager created.");
 			return new TeaManager(location);
@@ -46,7 +55,11 @@ public class TeaManager {
 	 * @methodproperties class
 	 */
 	public Tea search(String typeName) {
-		assert(!typeName.isEmpty());
+		//assert(!typeName.isEmpty());
+		if (typeName.isEmpty() || typeName == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		System.out.println("typeName: " + typeName + ", location: " + this.location_);		
 		return new TeaType(typeName, this.location_).newInstance();
 	}

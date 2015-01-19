@@ -41,7 +41,11 @@ public enum QualityValue {
 	 * @methodproperties composed
 	 */
 	public static QualityValue get(String location) {
-		assert(!location.isEmpty());
+		//assert(!location.isEmpty());
+		if (location.isEmpty() || location == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		assert(location.contains(","));
 		System.out.println("Getting QualityValue from location: " + location);
 		String lookUpString = isValid(location);
@@ -62,7 +66,16 @@ public enum QualityValue {
 	 */
 	private static String isValid(String location) {
 		String validLocation = null;
-		String[] coordinates = location.split(",");
+		
+		String delimiter = "";
+		if (location.contains(", ")) {
+			delimiter = ", ";
+		}
+		if (location.contains(",")) {
+			delimiter = ",";
+		}
+			
+		String[] coordinates = location.split(delimiter);
 		if (!coordinates[0].contains(".")) {
 			validLocation = coordinates[0];
 			validLocation += ".0,";
@@ -71,6 +84,10 @@ public enum QualityValue {
 			validLocation += coordinates[1] + ".0";
 		}
 	
+		//  Check postcondition
+		//  Sidenote: I used assertions here, as they  are much easier 
+		//  to write, and as we don't need any special error handling 
+		//  here, using error codes seems unnecessary
 		assert(!validLocation.isEmpty() && validLocation != null);
 		
 		return validLocation;

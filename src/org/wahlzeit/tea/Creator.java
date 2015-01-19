@@ -8,6 +8,10 @@ import java.util.Map;
 public class Creator {
 	
 	public Creator(String spec) {
+		if (spec.isEmpty() || spec == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		spec_ = spec;
 	}
 	

@@ -51,4 +51,13 @@ public class TeaTest extends TestCase {
 		assertEquals("Geschuettelt, nicht geruehrt! ;)", behaviour.getContent());
 	}
 	
+	public void testTeaError() {
+		Tea chinaPeppermint = TeaManager.getInstance("45,45").search("");
+		
+		RoleGeschuettelt behaviour = (RoleGeschuettelt)chinaPeppermint.getTeaBehaviour("geschuettelt");
+		
+		System.out.println(behaviour.getContent());
+		assertEquals("Geschuettelt, nicht geruehrt! ;)", behaviour.getContent());
+	}
+	
 }

@@ -47,6 +47,10 @@ public class TeaPhoto extends Photo {
 	 */
 	public void setTeaQuality(Tea teaTime)
 	{
+		if (teaTime == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		tea = teaTime;
 		incWriteCount();
 	}
@@ -57,6 +61,10 @@ public class TeaPhoto extends Photo {
 	 */
 	public String getTeaQuality(ModelConfig cfg)
 	{
+		if (cfg == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		return cfg.getTeaQuality(tea.getQuality());
 	}
 	

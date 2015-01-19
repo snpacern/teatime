@@ -16,6 +16,10 @@ public class Tea {
 	 * @methodtype constructor
 	 */
 	public Tea(TeaType teaType) {
+		if (teaType == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		System.out.println("Tea created.");		
 		this.teaTypeRef_ = teaType;
 		teaBehaviour_ = new TeaCore();
@@ -49,6 +53,10 @@ public class Tea {
 	}
 	
 	public TeaBehaviour getTeaBehaviour(String behaviourType) {
+		if (behaviourType.isEmpty() || behaviourType == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		return teaBehaviour_.getRole(behaviourType);
 	}
 	

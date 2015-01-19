@@ -6,7 +6,7 @@ public interface ITeaQuality {
 
 	/*
 	 * @methodtype get
-	 * @methodproperties primitive, hook
+	 * @methodproperties primitive
 	 */
 	public String getQuality();
 	

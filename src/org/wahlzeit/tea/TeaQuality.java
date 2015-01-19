@@ -28,7 +28,10 @@ public class TeaQuality implements ITeaQuality {
 	 * @methodproperties class
 	 */
 	public static TeaQuality getInstance(Tea tea) {		
-		assert(tea != null);
+		//assert(tea != null);
+		if (tea == null) {
+			throw new IllegalArgumentException();
+		}
 		
 		WeakReference<TeaQuality> cached = cache.get(tea);
 		if (cached == null)
